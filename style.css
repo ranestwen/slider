@@ -1,0 +1,37 @@
+body {
+	background: #535555;
+}
+#slider img {
+	display: none;
+	position: relative;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+
+}
+button {
+	border: none;
+	background-color : transparent;
+
+}
+
+#buttons i { 
+	transition: 300ms all; 
+	font-size: 12px; 
+	margin-left: 10px;
+	color: #c9c9c9;
+}  
+#buttons {
+	color: #c9c9c9;
+	margin-top: -3%;
+	z-index: 99999;
+	position: relative;
+	text-align: center;
+
+}
+#buttons .active { font-size: 20px; color: #c9c9c9;}
+
+ button:active, button:focus { outline: none; border: none; }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="animate.css">
+		<script src="https://use.fontawesome.com/19445204e2.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		
+		
+	</head>
+	<body onload="buttons(); zmienslajd()">
+		<div id="slider">
+				<img src="slides/img1.jpg">
+				<img src="slides/img2.jpg">
+				<img src="slides/img3.jpg">
+				<img src="slides/img4.jpg">
+				<img src="slides/img5.jpg">
+		</div>
+
+
+<script type="text/javascript">
+    var number = -1;
+    var timer = 0;
+    var timer2 = 0;
+    var table = document.getElementById('slider').getElementsByTagName('img');
+    var length = table.length - 1;
+    var tablebuttons;
+    var buttonsnumber;
+
+
+
+    function zmienslajd(sleep) {
+
+        if (number < length) number++;
+        else number = 0;
+
+        table[number].style.display = "block";
+        tablebuttons[number].classList.add("active");
+
+        if (number > 0) {
+            table[number - 1].style.display = "none";
+            tablebuttons[number - 1].classList.remove("active");
+        }
+
+        if (number == 0) {
+            table[length].style.display = "none";
+            tablebuttons[buttonsnumber - 1].classList.remove("active");
+        }
+
+        table[number].className = 'animated fadeIn';
+
+        timer2 = setTimeout("fdout(number)", 1500);
+
+        timer = setTimeout("zmienslajd()", 2500);
+    }
+
+    function fdout(number) {
+        table[number].className = 'animated fadeOut';
+    }
+
+    function buttons() {
+        var div = document.createElement('div');
+        div.id = 'buttons';
+        document.getElementsByTagName('body')[0].appendChild(div);
+
+
+        for (var i = 0; i <= length; i++) {
+            document.getElementById('buttons').innerHTML += "<button onclick='btnaction(this)'id=" + i + "><i class='fa fa-circle fa-2x' aria-hidden='true'></i></button>";
+        }
+        tablebuttons = document.getElementById('buttons').getElementsByTagName('i');
+        buttonsnumber = document.getElementById('buttons').getElementsByTagName('i').length;
+    }
+
+    function displaynone() {
+        for (var i = 0; i <= length; i++) {
+            table[i].style.display = "none";
+            tablebuttons[i].classList.remove("active");
+        }
+    }
+
+    function btnaction(button) {
+        var x = button.id;
+        if (timer)
+            clearTimeout(timer);
+        clearTimeout(timer2);
+        //setTimeout(timer, 3500);
+        displaynone();
+        number = x - 1;
+        zmienslajd(x);
+    }
+
+    function check() {
+        console.log(number);
+        setTimeout("check()", 500);
+
+    }
+</script>
+	</body>
+</html>
